@@ -1,5 +1,8 @@
 spring:
   application:
     name: gateway
+  output:
+    ansi:
+      enabled: always
   config:
     import: optional:configserver:http://localhost:8888

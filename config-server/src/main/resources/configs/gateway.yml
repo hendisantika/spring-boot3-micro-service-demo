@@ -20,7 +20,16 @@ spring:
           uri: http://localhost:8070
           predicates:
             - Path=/api/v1/schools/**
-
+springdoc:
+  swagger-ui:
+    urls:
+      - name: department
+        url: /v3/api-docs/department
+      - name: organitation
+        url: /v3/api-docs/organitation
+      - name: employee
+        url: /v3/api-docs/employee
+        
 management:
   tracing:
     sampling:
