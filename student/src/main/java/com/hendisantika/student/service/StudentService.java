@@ -1,5 +1,6 @@
 package com.hendisantika.student.service;
 
+import com.hendisantika.student.entity.Student;
 import com.hendisantika.student.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,8 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
 
+
+    public void saveStudent(Student student) {
+        studentRepository.save(student);
+    }
 }
