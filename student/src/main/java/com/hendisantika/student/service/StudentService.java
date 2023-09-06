@@ -5,6 +5,8 @@ import com.hendisantika.student.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot3-micro-service-demo
@@ -24,5 +26,9 @@ public class StudentService {
 
     public void saveStudent(Student student) {
         studentRepository.save(student);
+    }
+
+    public List<Student> findAllStudents() {
+        return studentRepository.findAll();
     }
 }
