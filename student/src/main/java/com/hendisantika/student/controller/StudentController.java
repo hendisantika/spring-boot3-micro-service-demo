@@ -4,7 +4,10 @@ import com.hendisantika.student.entity.Student;
 import com.hendisantika.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,5 +31,10 @@ public class StudentController {
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody Student student) {
         studentService.saveStudent(student);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Student>> findAllStudents() {
+        return ResponseEntity.ok(studentService.findAllStudents());
     }
 }
