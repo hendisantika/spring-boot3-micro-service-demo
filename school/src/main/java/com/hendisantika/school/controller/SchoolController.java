@@ -1,9 +1,10 @@
 package com.hendisantika.school.controller;
 
+import com.hendisantika.school.entity.School;
 import com.hendisantika.school.service.SchoolService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,4 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class SchoolController {
 
     private final SchoolService schoolService;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@RequestBody School school) {
+        schoolService.saveSchool(school);
+    }
 }
