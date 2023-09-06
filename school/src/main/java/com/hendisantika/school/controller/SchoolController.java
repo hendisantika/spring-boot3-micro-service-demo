@@ -1,5 +1,6 @@
 package com.hendisantika.school.controller;
 
+import com.hendisantika.school.FullSchoolResponse;
 import com.hendisantika.school.entity.School;
 import com.hendisantika.school.service.SchoolService;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +36,10 @@ public class SchoolController {
     @GetMapping
     public ResponseEntity<List<School>> findAllSchools() {
         return ResponseEntity.ok(schoolService.findAllSchools());
+    }
+
+    @GetMapping("/with-students/{school-id}")
+    public ResponseEntity<FullSchoolResponse> findAllSchools(@PathVariable("school-id") Integer schoolId) {
+        return ResponseEntity.ok(schoolService.findSchoolsWithStudents(schoolId));
     }
 }
