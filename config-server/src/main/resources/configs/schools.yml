@@ -5,7 +5,6 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
 
-
 server:
   port: 8070
 spring:
@@ -14,11 +13,11 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/schools
-    username: username
-    password: password
+    username: postgres
+    password: hendi34
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
