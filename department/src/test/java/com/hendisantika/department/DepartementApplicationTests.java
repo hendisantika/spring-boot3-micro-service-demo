@@ -1,4 +1,4 @@
-package com.hendisantika.departement;
+package com.hendisantika.department;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
