@@ -1,5 +1,7 @@
 package com.hendisantika.school.service;
 
+import com.hendisantika.school.client.StudentClient;
+import com.hendisantika.school.entity.School;
 import com.hendisantika.school.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SchoolService {
 
-    private final SchoolRepository repository;
-    private final StudentClient client;
+    private final SchoolRepository schoolRepository;
+    private final StudentClient studentClient;
+
+    public void saveSchool(School school) {
+        schoolRepository.save(school);
+    }
 }
