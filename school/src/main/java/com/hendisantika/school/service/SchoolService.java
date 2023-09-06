@@ -6,6 +6,8 @@ import com.hendisantika.school.repository.SchoolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot3-micro-service-demo
@@ -25,5 +27,9 @@ public class SchoolService {
 
     public void saveSchool(School school) {
         schoolRepository.save(school);
+    }
+
+    public List<School> findAllSchools() {
+        return schoolRepository.findAll();
     }
 }
