@@ -1,9 +1,10 @@
 package com.hendisantika.student.controller;
 
+import com.hendisantika.student.entity.Student;
 import com.hendisantika.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -21,4 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
 
     private final StudentService studentService;
+
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void save(@RequestBody Student student) {
+        studentService.saveStudent(student);
+    }
 }
