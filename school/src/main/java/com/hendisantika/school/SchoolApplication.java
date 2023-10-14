@@ -22,7 +22,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 		),
 		license = @License(name = "Apache 2.0", url = "http://foo.bar"))
 )
-
 public class SchoolApplication {
 
 	public static void main(String[] args) {
