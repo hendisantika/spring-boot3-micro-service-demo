@@ -25,6 +25,14 @@ application:
   config:
     students-url: http://localhost:8222/api/v1/students
 
+springdoc:
+  packagesToScan: com.hendisantika.school
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /v3/api-docs
+
+
 management:
   tracing:
     sampling:
