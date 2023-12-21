@@ -25,7 +25,11 @@ spring:
           predicates:
             - Path=/api/v1/schools/**
 springdoc:
+  packagesToScan: com.hendisantika.school
   swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /v3/api-docs
     urls:
       - name: department
         url: /v3/api-docs/department
@@ -33,6 +37,7 @@ springdoc:
         url: /v3/api-docs/organization
       - name: employee
         url: /v3/api-docs/employee
+
 
 management:
   tracing:
@@ -42,3 +47,5 @@ management:
     web:
       exposure:
         include=health,info,beans:
+server:
+  port: 9999
