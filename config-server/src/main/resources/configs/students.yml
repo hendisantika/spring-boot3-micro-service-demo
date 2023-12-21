@@ -21,6 +21,13 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+springdoc:
+  packagesToScan: com.hendisantika.student
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /v3/api-docs
+
 management:
   tracing:
     sampling:
