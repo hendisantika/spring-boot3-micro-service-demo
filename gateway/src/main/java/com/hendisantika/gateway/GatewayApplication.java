@@ -1,11 +1,15 @@
 package com.hendisantika.gateway;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.servers.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springdoc.core.models.GroupedOpenApi;
+import org.springdoc.core.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
@@ -16,7 +20,14 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class GatewayApplication {
+@OpenAPIDefinition(
+        servers = {@Server(url = "/gateway", description = "Default Server Path URL")},
+        info = @Info(
+                title = "API Gateway",
+                version = "1.0",
+                description = "Documentation API Gateway v1.0"
+        ))
+public class GatewayApplication extends SpringBootServletInitializer {
     private static final Logger log = LoggerFactory.getLogger(GatewayApplication.class);
 
     public static void main(String[] args) {

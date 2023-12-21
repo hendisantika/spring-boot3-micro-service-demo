@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/api/v1/organization")
 public class OrganizationController {
 
-    @GetMapping(value = "/hallo/{name}")
+    @GetMapping(value = "/hello/{name}")
     private String getHalloOrganization(@PathVariable("name") String name) {
-        return "Hallo " + name;
+        return "Hello " + name;
     }
 }

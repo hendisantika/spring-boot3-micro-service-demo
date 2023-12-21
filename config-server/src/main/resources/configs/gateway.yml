@@ -1,8 +1,12 @@
 eureka:
+  instance:
+    hostname: localhost
   client:
+    preferIpAddress: true
     register-with-eureka: false
-server:
-  port: 8222
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
 spring:
   application:
     name: gateway
@@ -25,12 +29,16 @@ springdoc:
     urls:
       - name: department
         url: /v3/api-docs/department
-      - name: organitation
-        url: /v3/api-docs/organitation
+      - name: organization
+        url: /v3/api-docs/organization
       - name: employee
         url: /v3/api-docs/employee
-        
+
 management:
   tracing:
     sampling:
       probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include=health,info,beans:

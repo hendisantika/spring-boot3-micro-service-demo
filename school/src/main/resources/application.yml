@@ -3,3 +3,38 @@ spring:
     name: schools
   config:
     import: optional:configserver:http://localhost:8888
+
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+#
+#server:
+#  port: 8070
+#spring:
+#  application:
+#    name: schools
+#  config:
+#    import: optional:configserver:http://localhost:8888
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://localhost:5432/schools
+#    username: postgres
+#    password: hendi34
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    database: postgresql
+#    database-platform: org.hibernate.dialect.PostgreSQLDialect
+#
+#application:
+#  config:
+#    students-url: http://localhost:8222/api/v1/students
+#
+#management:
+#  tracing:
+#    sampling:
+#      probability: 1.0
