@@ -9,7 +9,6 @@ import org.springdoc.core.models.GroupedOpenApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
@@ -27,7 +26,7 @@ import java.util.List;
                 version = "1.0",
                 description = "Documentation API Gateway v1.0"
         ))
-public class GatewayApplication extends SpringBootServletInitializer {
+public class GatewayApplication {
     private static final Logger log = LoggerFactory.getLogger(GatewayApplication.class);
 
     public static void main(String[] args) {
