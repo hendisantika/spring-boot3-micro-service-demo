@@ -31,8 +31,8 @@ jobs:
     - name: Build with Maven for config-server
       run: mvn -B package --file config-server/pom.xml
 
-    - name: Build with Maven for departement
-      run: mvn -B package --file departement/pom.xml
+    - name: Build with Maven for department
+      run: mvn -B package --file department/pom.xml
 
     - name: Build with Maven for discovery
       run: mvn -B package --file discovery/pom.xml
