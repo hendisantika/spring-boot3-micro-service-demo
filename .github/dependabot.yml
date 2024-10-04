@@ -1,0 +1,62 @@
+version: 2
+updates:
+  - package-ecosystem: maven
+    directory: "/config-server"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/departement"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/discovery"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/employee"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/gateway"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 1
+  - package-ecosystem: maven
+    directory: "/organization"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/school"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: maven
+    directory: "/student"
+    schedule:
+      interval: daily
+      time: '05:00'
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
