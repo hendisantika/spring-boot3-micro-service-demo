@@ -1,62 +1,72 @@
 version: 2
 updates:
+  # Maven dependencies for every micro service
   - package-ecosystem: maven
-    directory: "/config-server"
+    directories:
+      - "/config-server"
+      - "/department"
+      - "/discovery"
+      - "/employee"
+      - "/gateway"
+      - "/organization"
+      - "/school"
+      - "/student"
     schedule:
       interval: daily
-      time: '05:00'
+      time: "05:00"
       timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: maven
-    directory: "/departement"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: maven
-    directory: "/discovery"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: maven
-    directory: "/employee"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: maven
-    directory: "/gateway"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 1
-  - package-ecosystem: maven
-    directory: "/organization"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: maven
-    directory: "/school"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: maven
-    directory: "/student"
-    schedule:
-      interval: daily
-      time: '05:00'
-      timezone: Asia/Jakarta
-    open-pull-requests-limit: 10
-  - package-ecosystem: "github-actions"
+    open-pull-requests-limit: 20
+    labels:
+      - dependencies
+      - java
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: scope
+    groups:
+      spring-boot:
+        patterns:
+          - "org.springframework.boot*"
+      spring-cloud:
+        patterns:
+          - "org.springframework.cloud*"
+      springdoc:
+        patterns:
+          - "org.springdoc*"
+      observability:
+        patterns:
+          - "io.micrometer*"
+          - "io.zipkin*"
+      maven-plugins:
+        patterns:
+          - "org.apache.maven*"
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+        exclude-patterns:
+          - "org.springframework.boot*"
+          - "org.springframework.cloud*"
+          - "org.springdoc*"
+          - "io.micrometer*"
+          - "io.zipkin*"
+          - "org.apache.maven*"
+
+  # GitHub Actions used in workflows
+  - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: daily
+      time: "05:00"
+      timezone: Asia/Jakarta
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+      - github_actions
+    commit-message:
+      prefix: "ci(deps)"
+      include: scope
+    groups:
+      github-actions:
+        patterns:
+          - "*"
