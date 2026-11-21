@@ -1,0 +1,23 @@
+# Test configuration: run without config-server, Eureka and PostgreSQL
+spring:
+  application:
+    name: schools
+  cloud:
+    config:
+      enabled: false
+  datasource:
+    url: jdbc:h2:mem:schools;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+eureka:
+  client:
+    enabled: false
+
+application:
+  config:
+    students-url: http://localhost:8222/api/v1/students
