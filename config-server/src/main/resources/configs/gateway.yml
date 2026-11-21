@@ -12,18 +12,20 @@ spring:
     name: gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: students
-          uri: http://localhost:8090
-          predicates:
-            - Path=/api/v1/students/**
-        - id: schools
-          uri: http://localhost:8070
-          predicates:
-            - Path=/api/v1/schools/**
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+          routes:
+            - id: students
+              uri: http://localhost:8090
+              predicates:
+                - Path=/api/v1/students/**
+            - id: schools
+              uri: http://localhost:8070
+              predicates:
+                - Path=/api/v1/schools/**
 springdoc:
   packagesToScan: com.hendisantika.school
   swagger-ui:
@@ -46,6 +48,6 @@ management:
   endpoints:
     web:
       exposure:
-        include=health,info,beans:
+        include: health,info,beans
 server:
   port: 9999
