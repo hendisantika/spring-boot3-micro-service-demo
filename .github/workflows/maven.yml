@@ -1,11 +1,6 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Java CI with Maven
 
 on:
@@ -13,45 +8,76 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
-
+    name: Build ${{ matrix.service }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service:
+          - config-server
+          - department
+          - discovery
+          - employee
+          - gateway
+          - organization
+          - school
+          - student
 
     steps:
-    - uses: actions/checkout@v7
-    - name: Set up JDK 21
-      uses: actions/setup-java@v6
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-        
-    - name: Build with Maven for config-server
-      run: mvn -B package --file config-server/pom.xml
+      - uses: actions/checkout@v7
 
-    - name: Build with Maven for department
-      run: mvn -B package --file department/pom.xml
+      - name: Set up JDK 25
+        uses: actions/setup-java@v6
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: maven
+          cache-dependency-path: ${{ matrix.service }}/pom.xml
 
-    - name: Build with Maven for discovery
-      run: mvn -B package --file discovery/pom.xml
+      - name: Build with Maven for ${{ matrix.service }}
+        run: mvn -B package --file ${{ matrix.service }}/pom.xml
 
-    - name: Build with Maven for employee
-      run: mvn -B package --file employee/pom.xml
+  dependency-graph:
+    name: Update dependency graph
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - config-server
+          - department
+          - discovery
+          - employee
+          - gateway
+          - organization
+          - school
+          - student
+    steps:
+      - uses: actions/checkout@v7
 
-    - name: Build with Maven for gateway
-      run: mvn -B package --file gateway/pom.xml
+      - name: Set up JDK 25
+        uses: actions/setup-java@v6
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: maven
+          cache-dependency-path: ${{ matrix.service }}/pom.xml
 
-    - name: Build with Maven for organization
-      run: mvn -B package --file organization/pom.xml
-
-    - name: Build with Maven for school
-      run: mvn -B package --file school/pom.xml
-
-    - name: Build with Maven for student
-      run: mvn -B package --file student/pom.xml
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@a64327a7329c9939cf675e458452febe1894a70c
+      # Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+      - name: Submit dependency graph for ${{ matrix.service }}
+        uses: advanced-security/maven-dependency-submission-action@a64327a7329c9939cf675e458452febe1894a70c
+        with:
+          directory: ${{ matrix.service }}
+          correlator: ${{ github.job }}-${{ matrix.service }}
